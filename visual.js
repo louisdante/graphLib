@@ -88,16 +88,16 @@ class Edge extends Unit {
 
   }
 
-  // link two nodes, optionally make edge bidirectional (duplex)
-  link(inputNode, outputNode, duplex) {
+  // link two nodes, optionally make edge bidirection
+  link(inputNode, outputNode, bidirection) {
 
     this.unlink();
 
     this.inputNode = inputNode;
     this.outputNode = outputNode;
-    this.duplex = !!duplex;
+    this.bidirection = !!bidirection;
 
-    if (duplex) {
+    if (bidirection) {
       this._linkTo(inputNode, 0);
       this._linkTo(outputNode, 0);
       return this;
@@ -150,7 +150,7 @@ class Edge extends Unit {
     (pos = inode.outputEdges.indexOf(this)) > -1 && inode.outputEdges.splice(pos, 1);
     (pos = onode.inputEdges.indexOf(this)) > -1 && onode.inputEdges.splice(pos, 1);
 
-    if (this.duplex) {
+    if (this.bidirection) {
 
       (pos = inode.inputEdges.indexOf(this)) > -1 && inode.inputEdges.splice(pos, 1);
       (pos = onode.outputEdges.indexOf(this)) > -1 && onode.outputEdges.splice(pos, 1);
@@ -160,11 +160,10 @@ class Edge extends Unit {
     this.inputNode = null;
     this.outputNode = null;
 
-    this.duplex = false;
+    this.bidirection = false;
 
     return true;
 
   }
 
 }
-export default Unit ;
