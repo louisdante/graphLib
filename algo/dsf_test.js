@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 // To run: node dfs_test.js
+
 (function (dfs) {
 
     'use strict';
@@ -25,4 +27,4 @@
 
     console.log(visited.join(', '));
 
-})(require('./dfs.js'));
+})(require('dfs.js'));
