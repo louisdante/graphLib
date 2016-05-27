@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="canvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+
+<br>
+
+Order: 
+<select id="order">
+<option value=5>5</option>
+<option value=13>13</option>
+<option value=17>17</option>
+</select>
+
+Speed:
+<select id="speed">
+<option value=500>Slow</option>
+<option value=50>Fast</option>
+</select>
+
+<button onclick="buttonClicked()">Draw</button>
+<script src="graphDrawer.js"></script>
+<script src="completeGraphDrawer.js"></script>
+
+<script>
+var canvas = document.getElementById("canvas");
+var drawer = completeGraphDrawer(5, canvas, 100, true);
+var order = document.getElementById("order");
+var speed = document.getElementById("speed");
+
+// When button is clicked, clear canvas and draw the graph
+var buttonClicked = function() {
+    canvas.width = canvas.width;    // Clear canvas
+    drawer.stop();    // Interrupt if it's not done drawing the previous graph
+    drawer.reset();
+    drawer.n = order.options[order.selectedIndex].value;
+    drawer.timeInterval = speed.options[speed.selectedIndex].value;
+    drawer.draw();
+};
+
+</script>
+
+</body>
+</html>
